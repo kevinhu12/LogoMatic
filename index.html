@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+
+	<!-- Head Content -->
+	<head>
+		<title>LogoMatic</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@700&family=Poppins:wght@400;700&display=swap"
+		rel="stylesheet">
+		<link rel="stylesheet" href="index.css">
+	</head>
+	<body>
+
+		<!-- Header Content -->
+		<header>
+			<img src="./images/logomatic-logo.png" alt="LogoMatic">
+			<a href="/"><span>Logo</span>Matic</a>
+		</header>
+		<main>
+
+			<!-- Receive Prompt -->	
+			<section id="setup-container">
+				<div class="setup-inner">
+					<img src="/images/cayde-6.png">
+					<div class="speech-bubble-ai" id="speech-bubble-ai">
+						<p id="cayde-6-text">
+							Give me a one-sentence concept, and I'll give you an eye-catching logo along with my thought process behind it!
+							And, of course, some patented Cayde-6 flair.
+						</p>
+					</div>
+				</div>
+				<div class="setup-inner setup-input-container" id="setup-input-container">
+					<textarea id="setup-textarea" placeholder="A basketball team called the Comets."></textarea>
+					<button class="send-btn" id="send-btn" aria-label="send">
+							<img src="images/send-btn-icon.png" alt="send">
+					</button>
+				</div>
+			</section>
+
+			<!-- Display Output -->	
+			<section class="output-container" id="output-container">
+				<div id="output-img-container" class="output-img-container"></div>
+				<h1 id="output-title"></h1>
+				<h2 id="output-stars"></h2>
+				<p id="output-text"></p>
+			</section>
+		</main>	
+		<footer>
+			&copy; 2023 LogoMatic All rights reserved
+			<br />
+			Template courtesy of freeCodeCamp!
+		</footer>
+		<script type="module" src="index.js"></script>
+	</body>
+</html>
