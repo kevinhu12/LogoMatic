@@ -1,1 +1,1 @@
-# funkocreator
+# LogoMatic

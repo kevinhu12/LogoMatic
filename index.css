@@ -216,7 +216,7 @@ button:hover {
     vertical-align: middle;
 }
 
-.view-pitch-btn {
+.view-logo-btn {
     color: var(--light);
     border-radius: var(--border-rad-lg);
     padding: 1em;
@@ -225,7 +225,7 @@ button:hover {
     font-size: 1.2em;
 }
 
-.view-pitch-btn:hover {
+.view-logo-btn:hover {
     box-shadow: 1px 1px 5px 1px var(--medium-dark);
 }
 
