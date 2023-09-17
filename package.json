@@ -1,16 +1,16 @@
 {
     "name": "project",
     "dependencies": {
-      "openai": "3.1.0"
+        "axios": "^1.5.0",
+        "openai": "3.1.0"
     },
     "devDependencies": {
-      "vite": "latest"
+        "vite": "latest"
     },
     "scripts": {
-      "start": "vite",
-      "dev": "vite",
-      "build": "vite build",
-      "preview": "vite preview"
+        "start": "vite",
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview"
     }
-  }
-  
+}

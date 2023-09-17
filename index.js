@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { process } from '/env';
 import { Configuration, OpenAIApi } from 'openai';
 
@@ -22,24 +23,40 @@ document.getElementById("send-btn").addEventListener("click", () => {
   }
 });
 
+// Perform sentiment analysis on the prompt
+async function fetchSentiment(prompt) {
+  const sentiment = await axios
+    .request({
+      method: 'POST',
+      url: 'https://api.edenai.run/v2/text/sentiment_analysis',
+      headers: {
+        authorization: `Bearer ${process.env.EDENAI_API_KEY}`
+      },
+      data: {
+        providers: 'google',
+        text: prompt,
+        language: 'en'
+      }
+    })
+    .then((response) => response.data);
+  return sentiment.google.general_sentiment;
+}
+
 // Get the loading message to display
 async function fetchLoadingMessage(prompt) {
+  const sentiment = await fetchSentiment(prompt);
+  let aiPrompt = '';
+  if (sentiment === 'Negative') {
+    aiPrompt = `Generate a short message to empathetically say that ${prompt} is a good idea for a logo. Say that you need some minutes to think about it, and make it clear that you sympathize with the user.`
+  } else if (sentiment === 'Positive') {
+    aiPrompt = `Generate a short message to enthusiastically say that ${prompt} sounds interesting to turn into a logo, and that you need some minutes to think about it.`
+  } else {
+    aiPrompt = `Generate a short message to formally say that ${prompt} provides great possibilities for logo designs, and that you will need some time to think it over.`
+  }
   const response = await openai.createCompletion({
     model: 'text-davinci-003',
-    prompt: `
-      Generate a short message to enthusiastically say a prompt sounds interesting to turn into a logo,
-      and that you need some minutes to think about it.
-    ###
-      description: A basketball team called the Comets.
-      message: I'll need to think about that. But that idea is fantastic! The Comets is a great name for a basketball team.
-    ###
-      design: A company that sells firewood.
-      message: That's an awesome idea for a company! I'll spend a few moments considering how best to design a logo for that.
-    ###
-      design: ${prompt}
-      message: 
-    `,
-    max_tokens: 60 
+    prompt: aiPrompt,
+    max_tokens: 60
   });
   caydeText.innerText = response.data.choices[0].text.trim();
 }
